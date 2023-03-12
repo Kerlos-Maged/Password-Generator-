@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+  <title>Password Genrator</title>
+</head>
+<body>
+  
+  <div class="container">
+    <h2>Password Genrator </h2>
+    <div class="form">
+      <input type="text" name="pass" readonly class="input">
+      <button class="btn">Generate </button>
+      <i class="fa-regular fa-copy icon"></i>
+    </div>  
+  </div>
+
+  <script>
+    let btn = document.querySelector('.btn');
+    let input = document.querySelector('.input')
+    let icon = document.querySelector('.icon')
+
+
+    btn.addEventListener('click', ()=>{
+      let n = Math.floor(Math.random() * 20);
+      while (n < 7) {
+        n = Math.floor(Math.random() * 20);
+      }
+      let Password = [];
+      let letters = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$&'.split('');
+
+      for (let i = 0; i < n; i++) {
+        Password.push(letters[Math.floor(Math.random() * letters.length)])
+      }
+
+      icon.onclick = function() {
+        navigator.clipboard.writeText(Password.join(''))
+        icon.classList.add('active')
+      }
+
+      input.value = Password.join('')
+
+    })
+
+  </script>
+
+</body>
+</html>
